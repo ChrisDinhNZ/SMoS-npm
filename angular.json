@@ -2,5 +2,46 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "smos-js": {
+      "projectType": "library",
+      "root": "projects/smos-js",
+      "sourceRoot": "projects/smos-js/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/smos-js/tsconfig.lib.json",
+            "project": "projects/smos-js/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/smos-js/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/smos-js/src/test.ts",
+            "tsConfig": "projects/smos-js/tsconfig.spec.json",
+            "karmaConfig": "projects/smos-js/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/smos-js/tsconfig.lib.json",
+              "projects/smos-js/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "smos-js"
 }
