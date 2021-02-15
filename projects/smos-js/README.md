@@ -1,24 +1,32 @@
-# SmosJs
+# SMoS-js
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.4.
+A Typescript implementation of SMoS helper library for encoding and decoding SMoS messages
 
-## Code scaffolding
+## Install
 
-Run `ng generate component component-name --project smos-js` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project smos-js`.
-> Note: Don't forget to add `--project smos-js` or else it will be added to the default project in your `angular.json` file. 
+```shell
+npm install smos-js
+```
 
-## Build
+## Importing and using the library in a component
 
-Run `ng build smos-js` to build the project. The build artifacts will be stored in the `dist/` directory.
+```javascript
+import { Component } from '@angular/core';
+import { SmosJsService } from 'smos-js'
 
-## Publishing
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html'
+})
+export class AppComponent {
 
-After building your library with `ng build smos-js`, go to the dist folder `cd dist/smos-js` and run `npm publish`.
+  constructor(private smosService: SmosJsService) {
+  }
 
-## Running unit tests
+  OnClickMe() {
+    let result = this.smosService.GetSMoSMinimumHexStringLength();
 
-Run `ng test smos-js` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    alert(result);
+  }
+}
+```
